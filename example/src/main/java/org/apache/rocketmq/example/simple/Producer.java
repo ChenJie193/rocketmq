@@ -22,13 +22,18 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
+
 public class Producer {
     public static void main(String[] args) throws MQClientException, InterruptedException {
 
+        // 1.创建一个消费者组
         DefaultMQProducer producer = new DefaultMQProducer("ProducerGroupName");
+        // 2.指定NameServer
+        producer.setNamesrvAddr("127.0.0.1:8881");
+        // 3.启动
         producer.start();
 
-        for (int i = 0; i < 128; i++)
+        for (int i = 0; i < 1; i++)
             try {
                 {
                     Message msg = new Message("TopicTest",
